@@ -4,6 +4,10 @@
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=seekerk_ctest&metric=bugs)](https://sonarcloud.io/summary/new_code?id=seekerk_ctest)
 [![Code smells](https://sonarcloud.io/api/project_badges/measure?project=seekerk_gtest&metric=code_smells)](https://sonarcloud.io/dashboard?id=seekerk_gtest)
 
+
+
+[![My Coverage Status](https://coveralls.io/repos/github/Loa-cloud/mytest/badge.svg?branch=main)](https://coveralls.io/github/Loa-cloud/mytest?branch=main)
+
 # Пример работы связки Qt + Google Test (gtest) + QtCreator
 
 ## Загрузка и запуск примера на локальном компьютере
