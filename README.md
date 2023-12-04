@@ -8,6 +8,17 @@
 
 [![My Coverage Status](https://coveralls.io/repos/github/Loa-cloud/mytest/badge.svg?branch=main)](https://coveralls.io/github/Loa-cloud/mytest?branch=main)
 
+
+# Тесты
+
+## Блочные тесты
+
+1.Б1 (позитивный)
+Описание:
+Метод:
+Входные данные:
+Ожидаемый результат:
+
 # Пример работы связки Qt + Google Test (gtest) + QtCreator
 
 ## Загрузка и запуск примера на локальном компьютере
