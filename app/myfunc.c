@@ -46,21 +46,24 @@ int fibonachi(int num) {
     return next;
 }
 
-void root(double a, double b, double c, double* x1, double* x2) {
+int root(double a, double b, double c, double* x1, double* x2) {
 
     if (a == 0)
     {
         printf("This is not a quadratic equation.\n");
+        return 0;
     }
     else if ((c == 0) && (b == 0))
     {
         *x1 = 0;
         *x2 = 0;
+        return 1;
     }
     else if (c == 0)
     {
         *x1 = 0;
         *x2 = -1 * (b/a);
+        return 2;
     }
     else if (b == 0)
     {
@@ -69,31 +72,37 @@ void root(double a, double b, double c, double* x1, double* x2) {
         if (((a > 0) && (c > 0)) || ((a < 0) && (c < 0)))
         {
             printf("There are no roots!\n");
+            return 0;
         }else{
             // если знаки а с различны
             *x1 = -1 * sqrt(  (-1 * c / a));
             *x2 = sqrt( -1 * (c/a));
+            return 2;
         }
     }
     else if((b*b - 4*a*c) > 0) //Если дискриминант больше или равен 0
     {
         *x1 = ( -1*b + sqrt(b*b - 4*a*c) ) / (2 * a);
         *x2 = ( -1*b - sqrt(b*b - 4*a*c) ) / (2 * a);
+        return 2;
     }
     else if ((b*b - 4*a*c) == 0)
     {
         *x1 = -b / (2 * a);
         *x2 = *x1;
+        return 1;
 
     }
     else if ((b*b - 4*a*c) < 0)
     {
         printf("There are no roots!\n");
+        return 0;
 
     }
     else
     {
         printf("There are no roots!\n");
+        return 0;
     }
 
     //return a;
