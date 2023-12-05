@@ -10,8 +10,15 @@
 
 
 int myfunc(int b) {
-    char *buffer = malloc(sizeof(char) * 1000);
-    buffer [0] = b + 4;
+    //char *buffer = malloc(sizeof(char) * 1000);
+
+    //buffer [0] = b + 4;
+    //if (!buffer){
+    //    free(buffer);
+    //    return 0;
+    //}else{
+    //    return buffer[0];
+    //}
     // здесь должен ругаться sonarcloud, т.к. утечка памяти
     //free(buffer);
     //return buffer[0];
@@ -19,8 +26,8 @@ int myfunc(int b) {
     //char *buffer2 = malloc(buffer[0]);
     //buffer2[0] = buffer [0];
     //free(buffer);
-
-    return buffer[0];
+    return b + 4;
+    //return buffer[0];
     //return b;
 }
 
