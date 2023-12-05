@@ -11,14 +11,7 @@
 
 int myfunc(int b) {
     //char *buffer = malloc(sizeof(char) * 1000);
-
     //buffer [0] = b + 4;
-    //if (!buffer){
-    //    free(buffer);
-    //    return 0;
-    //}else{
-    //    return buffer[0];
-    //}
     // здесь должен ругаться sonarcloud, т.к. утечка памяти
     //free(buffer);
     //return buffer[0];
@@ -26,8 +19,8 @@ int myfunc(int b) {
     //char *buffer2 = malloc(buffer[0]);
     //buffer2[0] = buffer [0];
     //free(buffer);
+
     return b + 4;
-    //return buffer[0];
     //return b;
 }
 
@@ -53,63 +46,54 @@ int fibonachi(int num) {
     return next;
 }
 
-int root(double a, double b, double c, double* x1, double* x2) {
+void root(double a, double b, double c, double* x1, double* x2) {
 
     if (a == 0)
     {
         printf("This is not a quadratic equation.\n");
-        return 0;
     }
     else if ((c == 0) && (b == 0))
     {
         *x1 = 0;
         *x2 = 0;
-        return 1;
     }
     else if (c == 0)
     {
         *x1 = 0;
         *x2 = -1 * (b/a);
-        return 2;
     }
     else if (b == 0)
     {
         //printf("b = 0.\n");
-        // проверить если знаки а с совпадают///
+        // проверить если знаки а с совпадают
         if (((a > 0) && (c > 0)) || ((a < 0) && (c < 0)))
         {
             printf("There are no roots!\n");
-            return 0;
         }else{
             // если знаки а с различны
             *x1 = -1 * sqrt(  (-1 * c / a));
             *x2 = sqrt( -1 * (c/a));
-            return 2;
         }
     }
     else if((b*b - 4*a*c) > 0) //Если дискриминант больше или равен 0
     {
         *x1 = ( -1*b + sqrt(b*b - 4*a*c) ) / (2 * a);
         *x2 = ( -1*b - sqrt(b*b - 4*a*c) ) / (2 * a);
-        return 2;
     }
     else if ((b*b - 4*a*c) == 0)
     {
         *x1 = -b / (2 * a);
         *x2 = *x1;
-        return 1;
 
     }
     else if ((b*b - 4*a*c) < 0)
     {
         printf("There are no roots!\n");
-        return 0;
 
     }
     else
     {
         printf("There are no roots!\n");
-        return 0;
     }
 
     //return a;
