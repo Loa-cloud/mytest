@@ -6,7 +6,7 @@ int myfunc(int b);
 
 int fibonachi(int num);
 
-void root(double a, double b, double c, double* x1, double* x2);
+int root(double a, double b, double c, double* x1, double* x2);
 
 void printStdoutMessages();
 
