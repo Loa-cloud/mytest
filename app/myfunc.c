@@ -75,7 +75,7 @@ int root(double a, double b, double c, double* x1, double* x2) {
     else if (b == 0)
     {
         //printf("b = 0.\n");
-        // проверить если знаки а с совпадают
+        // проверить если знаки а с совпадают///
         if (((a > 0) && (c > 0)) || ((a < 0) && (c < 0)))
         {
             printf("There are no roots!\n");
