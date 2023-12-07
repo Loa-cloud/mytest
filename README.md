@@ -1,143 +1,22 @@
-[![CI/CD GitHub Actions](https://github.com/seekerk/gtest/actions/workflows/test-action.yml/badge.svg)](https://github.com/seekerk/gtest/actions/workflows/test-action.yml)
-[![Coverage Status](https://coveralls.io/repos/seekerk/gtest/badge.svg?branch=master)](https://coveralls.io/github/seekerk/gtest?branch=master)
-[![Quality Gate](https://sonarcloud.io/api/project_badges/measure?project=seekerk_gtest&metric=alert_status)](https://sonarcloud.io/dashboard?id=seekerk_gtest)
-[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=seekerk_ctest&metric=bugs)](https://sonarcloud.io/summary/new_code?id=seekerk_ctest)
-[![Code smells](https://sonarcloud.io/api/project_badges/measure?project=seekerk_gtest&metric=code_smells)](https://sonarcloud.io/dashboard?id=seekerk_gtest)
+# Pygame_Chess
+Player v Player chess game made with Python 3.5 and Pygame
+
+En Passant needs implementation as well as GUI update.
 
 
+To install and run:
 
-[![My Coverage Status](https://coveralls.io/repos/github/Loa-cloud/mytest/badge.svg?branch=main)](https://coveralls.io/github/Loa-cloud/mytest?branch=main)
-
-
-# Тесты
-
-## Блочные тесты
-
-1.Б1 (позитивный)
-- Описание: дискриминант больше нуля
-- Метод: root(a, b, c, &x1, &x2)
-- Входные данные: a = 1, b = -3, c = 2
-- Ожидаемый результат: x1 = 2, x2 = 1
-
-2.Б2 (позитивный)
-- Описание: дискриминант равень нулю
-- Метод: root(a, b, c, &x1, &x2)
-- Входные данные: a = 16, b = -8, c = 1
-- Ожидаемый результат: x1 = 0.25, x2 = 0.25
-
-3.Б3 (негатинвый)
-- Описание: дискриминант меньше нуля
-- Метод: root(a, b, c, &x1, &x2)
-- Входные данные: a = 3, b = 1, c = 2, x1 = -999, x2 = -999
-- Ожидаемый результат: значения х1 и х2 не изменятся, x1 = -999, x2 = -999
-
-4.Б4 (позитивный)
-- Описание: с равно нулю
-- Метод: root(a, b, c, &x1, &x2)
-- Входные данные: a = 5, b = -26, c = 0
-- Ожидаемый результат: x1 = 0, x2 = 5.2
-
-5.Б5 (позитивный)
-- Описание: с равно нулю
-- Метод: root(a, b, c, &x1, &x2)
-- Входные данные: a = 4, b = 64, c = 0
-- Ожидаемый результат: x1 = 0, x2 = -16
-
-6.Б6 (позитивный)
-- Описание: b равно нулю, a и c с разными знаками
-- Метод: root(a, b, c, &x1, &x2)
-- Входные данные: a = 1, b = 0, c = -49
-- Ожидаемый результат: x1 = -7, x2 = 7
-
-7.Б7 (негативный)
-- Описание: b равно нулю, a и c с одним знаком знаками
-- Метод: root(a, b, c, &x1, &x2)
-- Входные данные: a = 1, b = 0, c = 3, x1 = -999, x2 = -999
-- Ожидаемый результат: значения х1 и х2 не изменятся, x1 = -999, x2 = -999
-
-8.Б8 (позитивный)
-- Описание: b равно нулю, с равно нулю
-- Метод: root(a, b, c, &x1, &x2)
-- Входные данные: a = 5, b = 0, c = 0
-- Ожидаемый результат: x1 = 0, x2 = 0
-
-9.Б9 (негативный)
-- Описание: а равно нулю
-- Метод: root(a, b, c, &x1, &x2)
-- Входные данные: a = 0, b = 9, c = 78, x1 = -999, x2 = -999
-- Ожидаемый результат: значения х1 и х2 не изменятся, x1 = -999, x2 = -999
-
-
-
-
-# Пример работы связки Qt + Google Test (gtest) + QtCreator
-
-## Загрузка и запуск примера на локальном компьютере
-
-1. Выполнить проверку наличия библиотек Qt и среды разработки Qt Creator. 
-В ОС Ubuntu необходимо установить пакеты `qt5-default qt5-qmake qtcreator`. 
-В ОС Windows необходимо установить Qt и компилятор, например, mingw с помощью онлайн установщика https://www.qt.io/download-qt-installer
-2. Выполнить клонирование репозитория с помощью утилиты git (`git clone ....`).
-3. Для подгрузки gtest необходимо выполнить команды:
-```shell
-git submodule init
-git submodule update
+Download python3 from https://www.python.org/downloads/windows/
+Pip should be included in python3 download
+Run:
 ```
-4. Запустить создание Make файлов:
-```shell
-qmake
+pip install pygame
 ```
-5. выполнить сборку приложения:
-```shell
-make
 ```
-6. Выполнить запуск тестов
-```shell
-./tests/tests
+git clone https://github.com/ConnerNovicki/Pygame_Chess
 ```
 
-## Создание проекта на базе примера
-
-1. Удалить каталог .git из директории проекта
-2. Выполнить инициализацию нового репозитория
-```shell
-git init
+cd into the folder it is downloaded and run
 ```
-3. Выполнить модификацию приложения в каталоге `app/`: 
-   - удалить модуль myfunc, 
-   - создать модуль(и) со своими функциями, 
-   - исправить подключение заголовочных файлов и работуглавной функции (файл `main.c`) 
-   - обновить перечень файлов проекта (файл `app.pro`, секции `SOURCES` и `HEADERS`)
-4. Выполнить модификацию тестов в каталоге `tests/`:
-   - удалить примеры тестов
-   - добавить заголовочные файлы со своими тестами
-   - обновить список подключений заголовочных файлов в main.cpp
-   - обновить перечень файлов проекта включая файлы приложения (файл `tests.pro`, секции `SOURCES` и `HEADERS`)
-5. Подключить внешний репозиторий следуя инструкциям Github
-6. Загрузить код на Github
-
-### Запуск тестов на Github actions
-1. Сборка и запуск приложения осуществляется с помощью github actions.
-2. Конфигурационный скрипт лежит в каталоге .gihub/workflows
-3. Необходимо удостовериться что выполняется сборка и запуск тестов до секции с отправкой статистик
-4. Обновить бейдж сборки в соответствии с названием профиля и репозитория
-
-### Соединение с coveralls.io
-
-1. Необходимо зайти на сайт coveralls.io и авторизоваться через github
-2. Подключить репозиторий с своим проектом
-3. В настройках репозитория скопировать токен
-4. В настройках гитхаба в разделе `secrets - actions` создать ключ `coveralls_token` со значением токена
-5. Запустить github actions, проверить успешное выполнение задания gtest-tests
-6. проверить появление статистики на coveralls.io
-7. Обновить бейдж покрытия в соответствии с названием профиля и репозитория
-
-### Соединение с sonarcloud
-1. Необходимо зайти на сайт https://sonarcloud.io и авторизоваться через github
-2. Создать новый проект, выбрать github actions, указать свой репозиторий
-3. Скопировать токен проекта, в настройках github в разделе `secrets - actions` создать ключ `sonar_token` со значением токена
-4. продолжить настройку проекта на sonarcloud до раздела с конфигурационным файлом
-5. Изменить значения названия проекта и организации в файле sonar-project.properties в соответствии с предложенными
-6. Запустить github actions, проверить успешное выполнение задания gtest-tests
-7. проверить появление результатов на sonarcloud
-8. Обновить бейджи статистик в соответствии с названием профиля и репозитория
+python Game.py
+```

@@ -1,2 +1,0 @@
-This is a test message from myfunc.c
-Do not disturb
