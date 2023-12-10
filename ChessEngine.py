@@ -57,7 +57,7 @@ def main():
     gameOver = False
 
     playerOne = True
-    playerTwo = True
+    playerTwo = False
 
     while running:
 
@@ -84,7 +84,7 @@ def main():
                     if len(playerClicks) == 2:
                         move = Move(playerClicks[0], playerClicks[1], gs.board)
 
-                        if move in validMoves: # поменять потом. белые могут ходить как им угодно, даже тупо
+                        if move in validMoves:
                             #drawText(screen, 'tesxt')
                             #print('----valid----')
                             #print(move.getChessNotation())
@@ -96,6 +96,12 @@ def main():
                         if not moveMade:
                             playerClicks = [sqSelected]
 
+        gameOver = gs.GameOver()
+        if gameOver:
+            if gs.whiteToMove:
+                drawText(screen, gs, sqSelected, 'Черные поставили мат!')
+            else:
+                drawText(screen, gs, sqSelected, 'Белые поставили мат!')
 
         if not gameOver and not humanTurn:
             aiMove = findBestMove(gs, validMoves)
@@ -115,16 +121,9 @@ def main():
         if moveMade:
             validMoves = gs.getValidMoves()
             moveMade = False
-
-        gameOver = gs.GameOver()
-        if gameOver:
-
-            if gs.whiteToMove:
-                #print('b')
-                drawText(screen, 'Черные поставили мат!')
-            else:
-                #print('w')
-                drawText(screen, 'Белые поставили мат!')
+            #print('----')
+            #print(gs.movelog[0].)
+            #print('----')
 
         #if gs.chekMate:
         #    gameOver = True
@@ -135,8 +134,6 @@ def main():
         #elif gs.staleMate:
         #    gameOver = True
         #    drawText(screen, 'Ничья!')
-
-
 
         drawGameState(screen, gs, validMoves, sqSelected)
         clock.tick(MAS_FPS)
@@ -193,7 +190,7 @@ def drawText2(screen, text):
     #screen.blit(textObject, textLocation.move(2, 2))
 
 
-def drawText2(screen, gs ,text):
+def drawText(screen, gs, sqSelected, text):
     pass
 
 

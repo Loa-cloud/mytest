@@ -22,12 +22,13 @@ def findBestMove(gs, validMoves):
             maxScore = score
             bestMove = playerMove
             bestMoveArr.append(bestMove)
-        elif score == maxScore:
-            maxScore = score
-            bestMove = playerMove
-            bestMoveArr.append(bestMove)
+        #elif score == maxScore:
+        #    maxScore = score
+        #    bestMove = playerMove
+        #    bestMoveArr.append(bestMove)
         gs.undoMove()
-    return bestMoveArr[random.randint(0, len(bestMoveArr)-1)]
+    #return bestMoveArr[random.randint(0, len(bestMoveArr)-1)]
+    return bestMove
 
 
 '''
@@ -44,9 +45,3 @@ def scoreMaterial(board):
     return score
 
 
-def drawText(screen, text):
-    print('game over')
-    font = p.font.SysFont('Arial', 32, True, False)
-    textObject = font.render(text, 0, p.Color('Red'))
-    textLocation = p.Rect(0, 0, WIDTH, HEIGHT)
-    screen.blit(textObject, textLocation)
