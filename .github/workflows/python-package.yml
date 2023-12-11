@@ -42,7 +42,9 @@ jobs:
     #    pytest
 
     - name: Run Python unit tests
-      run: python3 -u -m unittest tests/test.py
+      run: |
+          python3 -u -m unittest tests/test.py
+          python3 -u -m unittest tests/test_intefration.py
 
     #
       #run: ./tests/tests
