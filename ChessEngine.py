@@ -60,13 +60,8 @@ def main():
     playerTwo = False
 
     while running:
-
-
-
         humanTurn = (gs.whiteToMove and playerOne) or (not gs.whiteToMove and playerTwo)
-
         for e in p.event.get():
-
             if e.type == p.QUIT:
                 running = False
             elif e.type == p.MOUSEBUTTONDOWN:
@@ -85,23 +80,13 @@ def main():
                         move = Move(playerClicks[0], playerClicks[1], gs.board)
 
                         if move in validMoves:
-                            #drawText(screen, 'tesxt')
-                            #print('----valid----')
-                            #print(move.getChessNotation())
                             gs.makeMove(move)
-                            #print(move.getChessNotation())
                             moveMade = True
                             sqSelected = ()
                             playerClicks = []
                         if not moveMade:
                             playerClicks = [sqSelected]
 
-        gameOver = gs.GameOver()
-        if gameOver:
-            if gs.whiteToMove:
-                drawText(screen, gs, sqSelected, 'Черные поставили мат!')
-            else:
-                drawText(screen, gs, sqSelected, 'Белые поставили мат!')
 
         if not gameOver and not humanTurn:
             aiMove = findBestMove(gs, validMoves)
@@ -111,87 +96,17 @@ def main():
             moveMade = True
             sqSelected = ()
             playerClicks = []
-            #s = p.Surface((SQ_SIDE, SQ_SIDE))
-            #s.fill(p.Color('red'))
 
-            #print(type(AiMove))
-            #screen.blit(s, (c * SQ_SIDE, r * SQ_SIDE))
         # генерируем новые возможные ходы
         # позволяем пк ходить
         if moveMade:
             validMoves = gs.getValidMoves()
             moveMade = False
-            #print('----')
-            #print(gs.movelog[0].)
-            #print('----')
-
-        #if gs.chekMate:
-        #    gameOver = True
-        #    if gs.whiteToMove:
-        #        drawText(screen, 'Черные поставили мат!')
-        #    else:
-        #        drawText(screen, 'Белые поставили мат!')
-        #elif gs.staleMate:
-        #    gameOver = True
-        #    drawText(screen, 'Ничья!')
 
         drawGameState(screen, gs, validMoves, sqSelected)
         clock.tick(MAS_FPS)
         p.display.flip()
 
-def drawText1(screen, text):
-    print('game over1')
-    font = p.font.SysFont('Arial', 32, True, False)
-    textObject = font.render(text, 0, p.Color('Red'))
-    textLocation = p.Rect(0, 0, WIDTH, HEIGHT)
-    screen.blit(textObject, textLocation)
-
-def drawText2(screen, text):
-    # Create a font file by passing font file
-    # and size of the font
-    font1 = p.font.SysFont('freesanbold.ttf', 50)
-    font2 = p.font.SysFont('chalkduster.ttf', 40)
-
-    # Render the texts that you want to display
-    text1 = font1.render('GeeksForGeeks', True, (0, 255, 0))
-    text2 = font2.render('GeeksForGeeks', True, (0, 255, 0))
-
-
-
-    # create a rectangular object for the
-    # text surface object
-    textRect1 = text1.get_rect()
-    textRect2 = text2.get_rect()
-
-    # setting center for the first text
-    textRect1.center = (250, 250)
-
-    # setting center for the second text
-    textRect2.center = (250, 300)
-
-    screen.blit(text1, textRect1)
-    screen.blit(text2, textRect2)
-
-    #messagebox. askquestion('Confirm','Are you sure?')
-    #text = 'hello world!'
-    # Рендерим
-    #a = Font.render(text, 1, (100, 100, 100))
-    # Рисуем отрендеренный текст в созданном окне
-    #screen.blit(a, (160, 110))
-
-
-    print('game over')
-    font = p.font.SysFont('Times', 32, True, False)
-    textObject = font.render('text', 0, p.Color('Gray'))
-    #textLocation = p.Rect(0, 0, WIDTH, HEIGHT).move(WIDTH/2 - textObject.get_width()/2, HEIGHT/2 - textObject.get_height()/2)
-    textLocation = p.Rect(0, 0, WIDTH, HEIGHT)
-    screen.blit(textObject, textLocation)
-    #textObject = font.render(text, 0, p.Color('Black'))
-    #screen.blit(textObject, textLocation.move(2, 2))
-
-
-def drawText(screen, gs, sqSelected, text):
-    pass
 
 
 '''
@@ -229,7 +144,6 @@ def drawBoard(screen):
         for j in range(DIMENSION):
             color = colors[((i+j) % 2)]
             p.draw.rect(screen, color, p.Rect(j*SQ_SIDE, i*SQ_SIDE, SQ_SIDE, SQ_SIDE))
-
 
 '''
 фигуры на доске

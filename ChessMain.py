@@ -80,23 +80,7 @@ class GameState():
             return False
         return True
 
-    '''
-    нерабочая фигня
-    '''
-    def getSmartMoves(self):
-        #1) сгенерировать все свои ходы
-        moves = self.getAllPossibleMoves()
-        #2) пойти по списку и походить
-        for i in range(len(moves)-1, -1, -1):
-            self.makeMove(moves[i])
-            #3) сгенерировать все ходы врага
-            #4) посмотреть не находится ли король под атакой
-            self.whiteToMove = not self.whiteToMove
-            if self.inCheck():
-                moves.remove(moves[i]) #5) если король под атакой, то этот ход делать нельзя
-            self.whiteToMove = not self.whiteToMove
-            self.undoMove()
-        return moves
+
 
 
 
@@ -113,13 +97,8 @@ class GameState():
         return False
 
 
-    '''
-    Все ходы с проверкой шаха, чтобы не подставлять короля
-    останется дли ии черных
-    '''
     def getValidMoves(self):
         return self.getAllPossibleMoves()
-        #return self.getSmartMoves()
 
     '''
     Все ходы без проверки шаха?
@@ -203,105 +182,6 @@ class GameState():
             c = m[1] + col
             if (self.insideBoard(r, c) and (self.isNull(r, c) or self.isEnemy(r, c))):
                 moves.append(Move((row, col), (r, c), self.board))
-
-
-    def getBishopMoves1(self, row, col, moves):
-        enemyCanBeEaten = True
-        for t in range(row, 8):
-            r = row + t
-            c = col + t
-            if (self.insideBoard(r, c) and enemyCanBeEaten):
-                if (self.isNull(r, c) or self.isEnemy(r, c)):
-                    moves.append(Move((row, col), (r, c), self.board))
-                    if self.isEnemy(r, c):
-                        enemyCanBeEaten = False
-                if self.isАlly(r, c):
-                    enemyCanBeEaten = False
-
-        enemyCanBeEaten = True
-        for t in range(0, 8):
-            r = row - t
-            c = col - t
-            if (self.insideBoard(r, c) and enemyCanBeEaten):
-                if (self.isNull(r, c) or self.isEnemy(r, c)):
-                    moves.append(Move((row, col), (r, c), self.board))
-                    if self.isEnemy(r, c):
-                        enemyCanBeEaten = False
-                if self.isАlly(r, c):
-                    enemyCanBeEaten = False
-
-        enemyCanBeEaten = True
-        for t in range(0, 8):
-            r = row + t
-            c = col - t
-            #if (self.insideBoard(r, c):
-
-            if (self.insideBoard(r, c) and enemyCanBeEaten):
-                if (self.isNull(r, c) or self.isEnemy(r, c)):
-                    moves.append(Move((row, col), (r, c), self.board))
-                    if self.isEnemy(r, c):
-                        enemyCanBeEaten = False
-                if self.isАlly(r,c):
-                    enemyCanBeEaten = False
-
-        enemyCanBeEaten = True
-        for t in range(0, 8):
-            r = row - t
-            c = col + t
-            if (self.insideBoard(r, c) and enemyCanBeEaten):
-                if (self.isNull(r, c) or self.isEnemy(r, c)):
-                    moves.append(Move((row, col), (r, c), self.board))
-                    if self.isEnemy(r, c):
-                        enemyCanBeEaten = False
-                if self.isАlly(r, c):
-                    enemyCanBeEaten = False
-
-    def getBishopMoves2(self, row, col, moves):
-        bishopMoves = [
-            (-1, -1, -10, -10),
-            (-1, 1, -10, 10),
-            (1, -1, 10, -10),
-            (1, 1, 10, 10),
-        ]
-        for m in bishopMoves:
-            for r in range(row + m[0], m[2], m[0]):
-                for c in range(col + m[1], m[3], m[1]):
-                    enemyCanBeEaten = True
-                    if self.insideBoard(r, c) and enemyCanBeEaten:
-                        if self.isАlly(r, c):
-                            enemyCanBeEaten = False
-                        elif self.isEnemy(r, c):
-                            enemyCanBeEaten = False
-                            moves.append(Move((row, col), (r, c), self.board))
-                        else:
-                            moves.append(Move((row, col), (r, c), self.board))
-                    #else:
-                        #break
-        #pass
-
-
-    def getBishopMoves3(self, row, col, moves):
-        bishopMoves = [
-            (-1, -1, -100, -100),
-            (-1, 1, -100, 100),
-            (1, -1, 100, -100),
-            (1, 1, 100, 100),
-        ]
-
-
-        for r in range(row - 1, -10, -1):
-            for c in range(col - 1, -10, -1):
-                enemyCanBeEaten = True
-                if self.insideBoard(r, c) and enemyCanBeEaten:
-                    if self.isАlly(r, c):
-                        enemyCanBeEaten = False
-                    elif self.isEnemy(r, c):
-                        enemyCanBeEaten = False
-                        moves.append(Move((row, col), (r, c), self.board))
-                    else:
-                        moves.append(Move((row, col), (r, c), self.board))
-                else:
-                    break
 
 
     def getBishopMoves(self, row, col, moves):
