@@ -53,12 +53,11 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
       run: |
-        # pip install coveralls
         coverage run --source=mypkg -m unittest tests/test.py
         coveralls
       #run: coveralls -t ${{ secrets.COVERALLS_REPO_TOKEN }} --root . -E ".*external.*" -E ".*tests.*"
     #  run: coveralls -t ${{ secrets.COVERALLS_REPO_TOKEN }} --root . -E ".*test.*"
-
+# pip install coveralls
    
 
 
