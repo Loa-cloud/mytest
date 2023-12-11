@@ -68,8 +68,4 @@ jobs:
 
 
     - name: Coveralls
-      run: |
-        pip3 install --upgrade coveralls
-        coveralls --service=github --finish
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: coveralls -t ${{ secrets.COVERALLS_REPO_TOKEN }}
