@@ -1,7 +1,9 @@
 import unittest
 
 from ChessMain import *
-#from ChessEngine import *
+from Ai import *
+from Ai import findBestMove
+
 
 class MyTestCase(unittest.TestCase):
 
@@ -18,10 +20,142 @@ class MyTestCase(unittest.TestCase):
             ['wR', 'wN', 'wB', 'wQ', 'wK', 'wB', 'wN', 'wR'],
         ]
         self.moves = []
-        #self.testMove = Move()
 
-    def test_something(self):
-        self.assertEqual(True, True)  # add assertion here
+
+    def test_Ai_preferKing(self):
+        self.testGame.whiteToMove = False
+        self.testGame.board = [
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', 'wQ', '--', 'wN', '--', '--', '--', '--'],
+            ['--', '--', 'bQ', '--', '--', '--', '--', '--'],
+            ['--', 'wR', 'wP', 'wB', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', 'wK', '--', '--', '--', '--', '--'],
+        ]
+        testValidMoves = []
+        testValidMoves.append(Move((2, 2), (1, 3), self.testGame.board))
+        testValidMoves.append(Move((2, 2), (3, 1), self.testGame.board))
+        testValidMoves.append(Move((2, 2), (3, 2), self.testGame.board))
+        testValidMoves.append(Move((2, 2), (7, 2), self.testGame.board))
+        testValidMoves.append(Move((2, 2), (3, 3), self.testGame.board))
+        testValidMoves.append(Move((2, 2), (1, 1), self.testGame.board))
+
+
+
+        expectedMove = Move((2, 2), (7, 2), self.testGame.board)
+        bestMove = findBestMove(self.testGame, testValidMoves)
+        self.assertEqual(expectedMove, bestMove)
+
+    def test_Ai_preferQueen(self):
+        self.testGame.whiteToMove = False
+        self.testGame.board = [
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', 'wQ', '--', 'wN', '--', '--', '--', '--'],
+            ['--', '--', 'bQ', '--', '--', '--', '--', '--'],
+            ['--', 'wR', 'wP', 'wB', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+        ]
+        testValidMoves = []
+        testValidMoves.append(Move((2, 2), (1, 3), self.testGame.board))
+        testValidMoves.append(Move((2, 2), (3, 1), self.testGame.board))
+        testValidMoves.append(Move((2, 2), (3, 2), self.testGame.board))
+        testValidMoves.append(Move((2, 2), (3, 3), self.testGame.board))
+        testValidMoves.append(Move((2, 2), (1, 1), self.testGame.board))
+
+
+
+        expectedMove = Move((2, 2), (1, 1), self.testGame.board)
+        bestMove = findBestMove(self.testGame, testValidMoves)
+        self.assertEqual(expectedMove, bestMove)
+
+
+    def test_Ai_preferRock(self):
+        self.testGame.whiteToMove = False
+        self.testGame.board = [
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', 'wN', '--', '--', '--', '--'],
+            ['--', '--', 'bQ', '--', '--', '--', '--', '--'],
+            ['--', 'wR', 'wP', 'wB', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+        ]
+        testValidMoves = []
+        testValidMoves.append(Move((2, 2), (1, 3), self.testGame.board))
+        testValidMoves.append(Move((2, 2), (3, 1), self.testGame.board))
+        testValidMoves.append(Move((2, 2), (3, 2), self.testGame.board))
+        testValidMoves.append(Move((2, 2), (3, 3), self.testGame.board))
+
+        expectedMove = Move((2, 2), (3, 1), self.testGame.board)
+        bestMove = findBestMove(self.testGame, testValidMoves)
+        self.assertEqual(expectedMove, bestMove)
+
+
+    def test_Ai_preferBihop(self):
+        self.testGame.whiteToMove = False
+        self.testGame.board = [
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', 'bQ', '--', '--', '--', '--', '--'],
+            ['--', '--', 'wP', 'wB', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+        ]
+        testValidMoves = []
+        testValidMoves.append(Move((2, 2), (3, 2), self.testGame.board))
+        testValidMoves.append(Move((2, 2), (3, 3), self.testGame.board))
+
+        expectedMove = Move((2, 2), (3, 3), self.testGame.board)
+        bestMove = findBestMove(self.testGame, testValidMoves)
+        self.assertEqual(expectedMove, bestMove)
+
+    def test_Ai_preferKnight(self):
+        self.testGame.whiteToMove = False
+        self.testGame.board = [
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', 'bQ', '--', '--', '--', '--', '--'],
+            ['--', '--', 'wP', 'wN', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+        ]
+        testValidMoves = []
+        testValidMoves.append(Move((2, 2), (3, 2), self.testGame.board))
+        testValidMoves.append(Move((2, 2), (3, 3), self.testGame.board))
+
+        expectedMove = Move((2, 2), (3, 3), self.testGame.board)
+        bestMove = findBestMove(self.testGame, testValidMoves)
+        self.assertEqual(expectedMove, bestMove)
+
+
+    def test_Ai_preferPawn(self):
+        self.testGame.whiteToMove = False
+        self.testGame.board = [
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', 'bQ', '--', '--', '--', '--', '--'],
+            ['--', '--', 'wP', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+            ['--', '--', '--', '--', '--', '--', '--', '--'],
+        ]
+        testValidMoves = []
+        testValidMoves.append(Move((2, 2), (3, 2), self.testGame.board))
+        expectedMove = Move((2, 2), (3, 2), self.testGame.board)
+        bestMove = findBestMove(self.testGame, testValidMoves)
+        self.assertEqual(expectedMove, bestMove)
+
 
     def test_Move_makeMove(self):
         #self.moves.append(Move((0, 0), (2, 2), self.board))
