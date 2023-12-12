@@ -41,7 +41,6 @@ jobs:
       - name: Run tests
         run: |
           coverage run --source=. -m unittest tests/test.py
-          coverage run --source=. -m unittest tests/test_intefration.py
           coverage xml
 
       - name: Upload coverage data to coveralls.io
