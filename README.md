@@ -505,17 +505,7 @@
 ['wP', 'wP', 'wP', 'wP', 'wP', 'wP', 'wP', 'wP'],  ]
 - Ожидаемый результат: len(moves) == 8
 
-### Класс Move()
 
-#### Метод getChessNotation(self)
-
-#### Метод getRankFile(self, r, c)
-
-### Функции автоматического выбора хода
-
-#### Метод findRandomMove(validMoves)
-
-#### Метод findBestMove(gs, validMoves)
 
 #### Метод scoreMaterial(board) -> int
 
